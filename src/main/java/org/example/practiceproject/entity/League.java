@@ -19,4 +19,16 @@ public class League {
 
     @OneToMany(mappedBy="league", fetch= FetchType.LAZY)
     private List<Team> teams = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
 }
