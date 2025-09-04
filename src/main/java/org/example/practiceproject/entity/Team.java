@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,22 +19,33 @@ public class Team {
 
     private String name;
 
+    @ManyToOne()
+    @JoinColumn(name="LEAGUE_ID")
+    private League league;
+
+    @OneToMany(mappedBy="team", fetch=FetchType.LAZY)
+    private List<Staff> staff = new ArrayList<>();
+
     @OneToMany(mappedBy="team", fetch = FetchType.LAZY)
     private List<Player> players = new ArrayList<Player>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public League getLeague() {
+        return league;
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String title) {
-        this.name = title;
+    public List<Player> getPlayers() {
+        return players;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
+    public List<Staff> getStaff() {
+        return staff;
     }
 }
