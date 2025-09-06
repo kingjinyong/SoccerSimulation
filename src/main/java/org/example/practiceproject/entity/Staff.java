@@ -21,6 +21,9 @@ public class Staff {
     @JoinColumn(name="TEAM_ID")
     private Team team;
 
+    protected Staff() {
+    }
+
     public Long getId() {
         return id;
     }

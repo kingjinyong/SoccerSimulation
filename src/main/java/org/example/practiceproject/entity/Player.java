@@ -24,6 +24,9 @@ public class Player {
 
     private Position position;
 
+    protected Player() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -2,8 +2,8 @@ package org.example.practiceproject.dto.Response;
 
 public class CreateLeagueResponse {
 
-    private Long leagueId;
-    private String name;
+    private final Long leagueId;
+    private final String name;
 
     public CreateLeagueResponse(Long leagueId, String name) {
         this.leagueId = leagueId;

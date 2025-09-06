@@ -29,6 +29,10 @@ public class Team {
     @OneToMany(mappedBy="team", fetch = FetchType.LAZY)
     private List<Player> players = new ArrayList<Player>();
 
+    protected Team(){
+
+    }
+
     public Long getId() {
         return id;
     }

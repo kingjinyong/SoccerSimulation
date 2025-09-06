@@ -2,7 +2,7 @@ package org.example.practiceproject.dto.Request;
 
 public class CreateLeagueRequest {
 
-    private String name;
+    private final String name;
 
     public String getName() {
         return name;

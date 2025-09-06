@@ -36,7 +36,7 @@ public class League {
         return teams;
     }
 
-    public League() {
+    protected League() {
     }
 
     public League(String name) {
