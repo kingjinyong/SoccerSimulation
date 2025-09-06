@@ -17,7 +17,7 @@ public class LeagueController {
         this.leagueService = leagueService;
     }
 
-    @PostMapping("/league")
+    @PostMapping("/leagues")
     public ResponseEntity<CreateLeagueResponse> createLeague(@RequestBody CreateLeagueRequest createLeagueRequest){
         CreateLeagueResponse result = leagueService.createLeague(createLeagueRequest);
         return ResponseEntity.ok(result);
