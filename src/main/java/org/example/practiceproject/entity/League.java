@@ -3,15 +3,19 @@ package org.example.practiceproject.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+import org.example.practiceproject.dto.Request.CreateLeagueRequest;
 
 @Entity
 public class League {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="LEAGUE_ID")
     private Long id;
 
@@ -31,4 +35,22 @@ public class League {
     public List<Team> getTeams() {
         return teams;
     }
+
+    public League() {
+    }
+
+    public League(String name) {
+        this.name = name;
+    }
+
+    public static League from(CreateLeagueRequest createLeagueRequest) {
+        if(createLeagueRequest.getName() == null){
+            throw new IllegalArgumentException("Name cannot be null");
+        }
+
+        return new League(
+                createLeagueRequest.getName()
+        );
+    }
+
 }
