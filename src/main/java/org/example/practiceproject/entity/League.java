@@ -44,12 +44,12 @@ public class League {
     }
 
     public static League from(CreateLeagueRequest createLeagueRequest) {
-        if(createLeagueRequest.getName() == null){
-            throw new IllegalArgumentException("Name cannot be null");
+        if(createLeagueRequest.getName() == null || createLeagueRequest.getName().isBlank()){
+            throw new IllegalArgumentException("Name cannot be null/blank");
         }
 
         return new League(
-                createLeagueRequest.getName()
+                createLeagueRequest.getName().trim()
         );
     }
 

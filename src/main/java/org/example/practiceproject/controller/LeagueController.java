@@ -1,5 +1,6 @@
 package org.example.practiceproject.controller;
 
+import java.net.URI;
 import org.example.practiceproject.dto.Request.CreateLeagueRequest;
 import org.example.practiceproject.dto.Response.CreateLeagueResponse;
 import org.example.practiceproject.service.LeagueService;
@@ -20,6 +21,7 @@ public class LeagueController {
     @PostMapping("/leagues")
     public ResponseEntity<CreateLeagueResponse> createLeague(@RequestBody CreateLeagueRequest createLeagueRequest){
         CreateLeagueResponse result = leagueService.createLeague(createLeagueRequest);
-        return ResponseEntity.ok(result);
+        URI location = URI.create("/leagues/" + result.getLeagueId());
+        return ResponseEntity.created(location).body(result);
     }
 }

@@ -19,6 +19,11 @@ public class LeagueService {
 
     @Transactional
     public CreateLeagueResponse createLeague(CreateLeagueRequest createLeagueRequest){
+
+        if (leagueRepository.existsByName(createLeagueRequest.getName())) {
+            throw new IllegalArgumentException("이미 존재하는 리그 이름입니다.");
+        }
+
         League league = League.from(createLeagueRequest);
 
         League saved = leagueRepository.save(league);
