@@ -1,7 +1,10 @@
 package org.example.practiceproject.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.example.practiceproject.dto.Request.CreateLeagueRequest;
 import org.example.practiceproject.dto.Response.CreateLeagueResponse;
+import org.example.practiceproject.dto.Response.LeagueListResponse;
 import org.example.practiceproject.entity.League;
 import org.example.practiceproject.repository.LeagueRepository;
 import org.springframework.stereotype.Service;
@@ -29,5 +32,17 @@ public class LeagueService {
         League saved = leagueRepository.save(league);
 
         return new CreateLeagueResponse(saved.getId(), saved.getName());
+    }
+
+    public List<LeagueListResponse> getLeagueList() {
+        List<League> leagueList = leagueRepository.findAll();
+
+        List<LeagueListResponse> result = new ArrayList<>();
+
+        for(League league : leagueList){
+            result.add(LeagueListResponse.craeteLeague(league));
+        }
+
+        return result;
     }
 }
